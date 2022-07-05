@@ -1,5 +1,6 @@
 const express = require ('express')
 const app = express();
+const port = process.env.PORT || 3000;
 const http = require('http').Server(app);
 
 const fs = require('fs')
@@ -10,8 +11,8 @@ app.get('/', (req, res) => {
 
 
 
-const server = http.listen(3000, () => {
-    console.log(`Socket.IO server running at http://localhost:3000`);
+const server = http.listen(port, () => {
+    console.log(`Socket.IO server running at http://localhost:$(port)`);
   });
   const io = require('socket.io')(server);
 
