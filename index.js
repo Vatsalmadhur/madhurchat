@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 
 
 const server = http.listen(port, () => {
-    console.log(`Socket.IO server running at http://localhost:$(port)`);
+    console.log(`Socket.IO server running at http://localhost:${port}`);port
   });
   const io = require('socket.io')(server);
 
@@ -27,11 +27,11 @@ socket.on('new-user-joined', name =>{
 })
 
 socket.on('send', message =>{
-    socket.broadcast.emit('receive', {message:message, name: users[socket.id]})
+    socket.broadcast.emit('receive', {message:message, name: socket.data.name})
 });
 socket.on('disconnect', message =>{
   socket.broadcast.emit('left', socket.data.name)
-   delete users[socket.id];
+  // delete users[socket.id];
 });
 
 });
