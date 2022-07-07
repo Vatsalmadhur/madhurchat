@@ -1,6 +1,7 @@
 const express = require ('express')
 const app = express();
 const http = require('http').Server(app);
+const port = process.env.PORT || 3000
 
 const fs = require('fs')
 app.use('/static',express.static(__dirname + "/static"))
@@ -10,8 +11,8 @@ app.get('/', (req, res) => {
 
 
 
-const server = http.listen(3000, () => {
-    console.log(`Socket.IO server running at http://localhost:3000`);
+const server = http.listen(port, () => {
+    console.log(`Socket.IO server running at http://localhost:${port}`);
   });
   const io = require('socket.io')(server);
 
